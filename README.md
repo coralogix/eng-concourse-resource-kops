@@ -5,9 +5,12 @@
 A Concourse resource for validating Kops cluster.
 
 ## Source Configuration
-* `state_bucket` : _Required_ (`string`). An S3 bucket where the Kops state is located. `e.g. s3://my-bucket/kube-cluster`.
-* `cluster` : Required (`string`). The name of the cluster you want to validate. `e.g. my-cluster.k8s.cluster.local`.
-* `duration` : _Optional_ (`string`).  The time to wait for the cluster to validate `e.g. 5m (defaults to 10m)`
+* `state_bucket` : _Required_ (`string`). An S3 bucket where the Kops state is located. 
+  * `e.g. s3://my-bucket/kube-cluster`.
+* `cluster` : Required (`string`). The name of the cluster you want to validate. 
+  * `e.g. my-cluster.k8s.cluster.local`.
+* `duration` : _Optional_ (`string`).  The time to wait for the cluster to validate.
+  * `e.g. 5m (defaults to 10m)`.
 
 ### Example Usage
 
