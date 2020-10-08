@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+output_dir="$1"
+input_json="$(cat)"
+
+echo >&2 -n "Parsing..."
+validation_status="$(jq -r '.version.status' <<< "${input_json}")"
+state_bucket="$(jq -r '.source.state_bucket' <<< "${input_json}")"
+cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
+echo >&2 ' done!'
+
+if [[ "${validation_status}" == "true" ]]; then
+  echo >&2 -n 'Exporting kube config...'
+  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig ./output_dir/kubecfg
+else
+  echo >&2 -n 'Cluster is not ready please check for cluster status...'
+  exit 1
+fi
+echo >&2 ' done!'

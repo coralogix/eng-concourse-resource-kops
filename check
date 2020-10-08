@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+input_json="$(cat)"
+
+echo >&2 -n 'Parsing...'
+state_bucket="$(jq -r '.source.state_bucket' <<< "${input_json}")"
+cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
+duration="$(jq -r 'if .source.duration == null then "10m" else .source.duration? end' <<< "${input_json}")"
+echo >&2 ' done!'
+
+set +e
+kops validate cluster --state "${state_bucket}" --name "${cluster}" --wait "${duration}"
+# construct the final output
+if [[ $? -eq 0 ]]; then
+  jq --raw-input '[{"status": . }]' <<< "true"
+else
+  jq --raw-input '[{"status": . }]' <<< "false"
+fi
+set -e
