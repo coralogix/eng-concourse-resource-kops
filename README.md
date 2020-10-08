@@ -4,18 +4,6 @@
 
 A Concourse resource for validating Kops cluster.
 
-
-## Recommended Usage
-
-
-```Dockerfile
-FROM quay.io/coralogix/eng-concourse-resource-kops:v1.17.0
-
-RUN kops validate --state s3://some-state-bucket/kube-cluster --cluster some.cluster.k8s.local
-```
-
-and use that image instead in the source for the `resource_types`.
-
 ## Source Configuration
 * `state_bucket` : _Required_ (`string`). An S3 bucket where the Kops state is located. `e.g. s3://my-bucket/kube-cluster`.
 * `cluster` : Required (`string`). The name of the cluster you want to validate. `e.g. my-cluster.k8s.cluster.local`.
