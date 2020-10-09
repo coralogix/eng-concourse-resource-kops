@@ -9,8 +9,6 @@ A Concourse resource for validating Kops cluster.
   * `e.g. s3://my-bucket/kube-cluster`.
 * `cluster` : Required (`string`). The name of the cluster you want to validate. 
   * `e.g. my-cluster.k8s.cluster.local`.
-* `duration` : _Optional_ (`string`).  The time to wait for the cluster to validate.
-  * `e.g. 5m (defaults to 10m)`.
 
 ### Example Usage
 
@@ -34,7 +32,6 @@ resources:
   source:
     state_bucket: s3://some-state-bucket/kube-cluster
     cluster: some.cluster.k8s.local
-    duration: 20m
 ```
 
 ## Behavior
