@@ -2,7 +2,7 @@
 
 [![Docker Repository on Quay](https://quay.io/repository/coralogix/eng-concourse-resource-kops/status "Docker Repository on Quay")](https://quay.io/repository/coralogix/eng-concourse-resource-kops)
 
-A Concourse resource for validating Kops cluster.
+A Concourse resource to fetch Kops credentials
 
 ## Source Configuration
 * `state_bucket` : _Required_ (`string`). An S3 bucket where the Kops state is located. 
@@ -23,7 +23,7 @@ resource_types:
     tag: v1.17.0
 ```
 
-Validate cluster
+Resource definition
 
 ```yaml
 resources:

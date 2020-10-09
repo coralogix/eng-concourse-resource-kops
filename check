@@ -10,11 +10,12 @@ cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
 echo >&2 ' done!'
 
 set +e
-kops validate cluster --state "${state_bucket}" --name "${cluster}"
+kops validate cluster --state "${state_bucket}" --name "${cluster}" >&2
 # construct the final output
 if [[ $? -eq 0 ]]; then
   jq --raw-input '[{"status": . }]' <<< "true"
 else
   jq --raw-input '[{"status": . }]' <<< "false"
+  exit 1
 fi
 set -e

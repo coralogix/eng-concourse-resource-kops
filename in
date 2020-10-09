@@ -13,7 +13,7 @@ echo >&2 ' done!'
 
 if [[ "${validation_status}" == "true" ]]; then
   echo >&2 -n 'Exporting kube config...'
-  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig ./output_dir/kubecfg
+  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig ./${output_dir}/kubecfg >&2
 else
   echo >&2 -n 'Cluster is not ready please check for cluster status...'
   exit 1
