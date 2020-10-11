@@ -15,9 +15,9 @@ RUN set -euo pipefail; \
     curl \
     jq && \
   mkdir -p /tmp && \
-  curl -L --output /tmp/kops \
+  curl -L --output /usr/local/bin/kops \
     https://github.com/kubernetes/kops/releases/download/$KOPS_VERSION/kops-linux-amd64 && \
-  mv /tmp/kops /usr/local/bin/kops && \
+  chmod +x /usr/local/bin/kops && \
   apk --no-cache del \
     curl
 
