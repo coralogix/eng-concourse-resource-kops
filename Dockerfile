@@ -7,7 +7,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vendor="Coralogix, Inc." \
       org.label-schema.version="v1.18.1"
 
-ENV KOPS_VERSION=1.18.1
+ENV KOPS_VERSION=v1.18.1
 
 RUN set -euo pipefail; \
   apk --no-cache add \
