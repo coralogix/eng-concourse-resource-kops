@@ -17,10 +17,10 @@ export AWS_ACCESS_KEY_ID="${aws_access_key_id}"
 export AWS_SECRET_ACCESS_KEY="${aws_secret_access_key}"
 
 if [[ "${validation_status}" == "true" ]]; then
-  echo >&2 -n 'Exporting kube config...'
-  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig ./${output_dir}/kubecfg >&2
+  echo >&2 'Exporting credentials...'
+  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig "${output_dir}/kubecfg.yaml" >&2
 else
-  echo >&2 -n 'Cluster is not ready please check for cluster status...'
+  echo >&2 'Cluster is not ready please check for cluster status...'
   exit 1
 fi
-echo >&2 ' done!'
+echo >&2 'Successfully retrieved credentials!'
