@@ -7,7 +7,12 @@ input_json="$(cat)"
 echo >&2 -n 'Parsing...'
 state_bucket="$(jq -r '.source.state_bucket' <<< "${input_json}")"
 cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
+aws_access_key_id="$(jq -r '.source.aws_access_key_id' <<< "${input_json}")"
+aws_secret_access_key="$(jq -r '.sources.aws_secret_access_key' <<< "${input_json}")"
 echo >&2 ' done!'
+
+export AWS_ACCESS_KEY_ID="${aws_access_key_id}"
+export AWS_SECRET_ACCESS_KEY="${aws_secret_access_key}"
 
 set +e
 kops validate cluster --state "${state_bucket}" --name "${cluster}" >&2
