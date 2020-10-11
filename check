@@ -15,7 +15,7 @@ kops validate cluster --state "${state_bucket}" --name "${cluster}" >&2
 if [[ $? -eq 0 ]]; then
   jq --raw-input '[{"status": . }]' <<< "true"
 else
-  jq --raw-input '[{"status": . }]' <<< "false"
+  echo >&2 "[ERROR] Failed to validate the cluster."
   exit 1
 fi
 set -e
