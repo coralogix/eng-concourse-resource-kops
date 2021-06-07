@@ -11,6 +11,7 @@ A Concourse resource to fetch Kops credentials
   * `e.g. my-cluster.k8s.cluster.local`.
 * `aws_access_key_id`: Required (`string`). An AWS Access Key ID to use to access the state bucket.
 * `aws_secret_access_key` : Required (`string`). An AWS Secret Access Key to use to access the state bucket.
+* `aws_region`: Required (`string`). An AWS Region to use when accessing the state bucket.
 
 ### Example Usage
 
@@ -36,6 +37,7 @@ resources:
     cluster: some.cluster.k8s.local
     aws_access_key_id: "((aws_access_key_id))"
     aws_secret_access_key: "((aws_secret_access_key))"
+    aws_region: "((aws_region))"
 ```
 
 ## Behavior
