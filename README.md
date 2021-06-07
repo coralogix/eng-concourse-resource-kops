@@ -22,7 +22,7 @@ resource_types:
   type: registry-image
   source:
     repository: quay.io/coralogix/eng-concourse-resource-kops
-    tag: v1.18.1
+    tag: v1.20.1
 ```
 
 Resource definition
