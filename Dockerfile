@@ -5,9 +5,9 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.description="A Concourse resource for validating Kops cluster." \
       org.label-schema.vcs-url="https://github.com/coralogix/eng-concourse-resource-kops" \
       org.label-schema.vendor="Coralogix, Inc." \
-      org.label-schema.version="v1.18.1"
+      org.label-schema.version="v1.20.1"
 
-ENV KOPS_VERSION=v1.18.1
+ENV KOPS_VERSION=v1.20.1
 
 RUN set -euo pipefail; \
   apk --no-cache add \
