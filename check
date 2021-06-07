@@ -10,6 +10,7 @@ cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
 aws_access_key_id="$(jq -r '.source.aws_access_key_id' <<< "${input_json}")"
 aws_secret_access_key="$(jq -r '.source.aws_secret_access_key' <<< "${input_json}")"
 aws_region="$(jq -r '.source.aws_region' <<< "${input_json}")"
+kubecfg_path=$(realpath "./kubecfg.yaml")
 echo >&2 ' done!'
 
 export AWS_ACCESS_KEY_ID="${aws_access_key_id}"
@@ -17,8 +18,8 @@ export AWS_SECRET_ACCESS_KEY="${aws_secret_access_key}"
 export AWS_DEFAULT_REGION="${aws_region}"
 
 set +e
-kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig "${output_dir}/kubecfg.yaml" --admin >&2
-kops validate cluster --state "${state_bucket}" --name "${cluster}" --config "${output_dir}/kubecfg.yaml" >&2
+kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig "${kubecfg_path}" --admin >&2
+kops validate cluster --state "${state_bucket}" --name "${cluster}" --kubeconfig "${kubecfg_path}" >&2
 # construct the final output
 if [[ $? -eq 0 ]]; then
   jq --raw-input '[{"status": . }]' <<< "true"
