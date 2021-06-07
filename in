@@ -10,11 +10,13 @@ validation_status="$(jq -r '.version.status' <<< "${input_json}")"
 state_bucket="$(jq -r '.source.state_bucket' <<< "${input_json}")"
 cluster="$(jq -r '.source.cluster' <<< "${input_json}")"
 aws_access_key_id="$(jq -r '.source.aws_access_key_id' <<< "${input_json}")"
-aws_secret_access_key="$(jq -r '.sources.aws_secret_access_key' <<< "${input_json}")"
+aws_secret_access_key="$(jq -r '.source.aws_secret_access_key' <<< "${input_json}")"
+aws_region="$(jq -r '.source.aws_region')"
 echo >&2 ' done!'
 
 export AWS_ACCESS_KEY_ID="${aws_access_key_id}"
 export AWS_SECRET_ACCESS_KEY="${aws_secret_access_key}"
+export AWS_DEFAULT_REGION="${aws_region}"
 
 if [[ "${validation_status}" == "true" ]]; then
   echo >&2 'Exporting credentials...'
