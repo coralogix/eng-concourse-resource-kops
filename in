@@ -20,9 +20,11 @@ export AWS_DEFAULT_REGION="${aws_region}"
 
 if [[ "${validation_status}" == "true" ]]; then
   echo >&2 'Exporting credentials...'
-  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig "${output_dir}/kubecfg.yaml" >&2
+  kops export kubecfg --state "${state_bucket}" --name "${cluster}" --kubeconfig "${output_dir}/kubecfg.yaml" --admin >&2
 else
   echo >&2 'Cluster is not ready please check for cluster status...'
   exit 1
 fi
 echo >&2 'Successfully retrieved credentials!'
+
+echo '{"version":{"status":"true"},"metadata":[]}'
